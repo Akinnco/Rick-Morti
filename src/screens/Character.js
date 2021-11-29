@@ -1,7 +1,6 @@
-import React, {useEffect, useState, useRef} from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 import axios from 'react-native-axios';
-import {ScrollView} from 'react-native-gesture-handler';
 import {wh, ww} from '../helpers/responsive';
 
 const Character = ({route}) => {
@@ -63,7 +62,6 @@ export default Character;
 const styles = StyleSheet.create({
   container: {flex: 1},
   imageStyle: {width: ww(1), height: wh(0.5)},
-  detailArea: {},
   nameArea: {flexDirection: 'row', alignSelf: 'center'},
   nameText: {fontSize: ww(0.1), color: 'black'},
   genderArea: {flexDirection: 'row', marginTop: wh(0.04)},

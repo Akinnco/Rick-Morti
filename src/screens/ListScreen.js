@@ -1,15 +1,13 @@
-import React, {useEffect, useState, useRef} from 'react';
-import {StyleSheet, Text, View, FlatList} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, Text, ScrollView, TouchableOpacity} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {apiUrl} from '../apis/apiurl';
 import {setFilmList} from '@redux/app/actions';
-import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import axios from 'react-native-axios';
 import {ww, wh} from '../helpers/responsive';
 
 const ListScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  // const filmList = useSelector(state => state.app.filmList);
   const [filmListt, setFilmListt] = useState();
 
   useEffect(() => {
