@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {apiUrl} from '../apis/apiurl';
 import axios from 'react-native-axios';
+import {ww, wh} from '../helpers/responsive';
 
 const DetailScreen = ({route, navigation}) => {
   const {filmId} = route.params;
@@ -40,7 +41,6 @@ const DetailScreen = ({route, navigation}) => {
             key={index}
             onPress={() => navigation.navigate('Character', {char})}>
             <Text style={styles.charText}>{char}</Text>
-            {console.log('---+++--++--++', char)}
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -52,29 +52,29 @@ export default DetailScreen;
 
 const styles = StyleSheet.create({
   container: {backgroundColor: '#FFAEBC', flex: 1},
-  nameArea: {alignItems: 'center', marginTop: 15, width: '90%'},
-  nameText: {fontSize: 25, color: '#363636', fontWeight: '600'},
-  dateArea: {marginTop: 10},
+  nameArea: {alignItems: 'center', marginTop: wh(0.02), width: ww(1)},
+  nameText: {fontSize: ww(0.1), color: '#363636', fontWeight: '600'},
+  dateArea: {marginTop: wh(0.01)},
   dateText: {
     alignSelf: 'flex-end',
     color: '#363636',
-    fontSize: 20,
+    fontSize: ww(0.04),
   },
   scroll: {
-    backgroundColor: 'yellow',
-    marginLeft: 15,
-    marginRight: 15,
-    marginTop: 20,
     borderWidth: 1,
-    borderRadius: 15,
-    height: 500,
-    paddingTop: 10,
-    marginBottom: 20,
+    backgroundColor: '#ffff68',
+    marginLeft: ww(0.04),
+    marginRight: ww(0.04),
+    marginTop: ww(0.08),
+    borderRadius: ww(0.04),
+    paddingTop: wh(0.04),
+    marginBottom: wh(0.04),
   },
   charText: {
-    marginTop: 10,
+    fontSize: wh(0.017),
+    borderBottomWidth: 1,
+    marginTop: wh(0.04),
     alignSelf: 'center',
     color: '#363636',
-    borderBottomWidth: 1,
   },
 });

@@ -1,12 +1,12 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import axios from 'react-native-axios';
+import {ScrollView} from 'react-native-gesture-handler';
+import {wh, ww} from '../helpers/responsive';
 
 const Character = ({route}) => {
   const [charter, setCharter] = useState({});
   const {char} = route.params;
-
-  console.log(char);
 
   useEffect(() => {
     let config = {
@@ -16,7 +16,6 @@ const Character = ({route}) => {
     };
     axios(config)
       .then(response => {
-        console.log(response.data);
         setCharter(response.data);
       })
       .catch(error => {
@@ -25,33 +24,60 @@ const Character = ({route}) => {
   }, []);
 
   return (
-    <View>
-      {/* <Image style={{width: 100, height: 100}} source={{uri: charter.image}} /> */}
+    <View style={styles.container}>
+      <Image
+        resizeMode="contain"
+        style={styles.imageStyle}
+        source={{uri: charter.image}}
+      />
 
-      <View style={{flexDirection: 'row'}}>
-        <Text>Name:</Text>
-        <Text>{charter.name}</Text>
-      </View>
-      <View style={{flexDirection: 'row'}}>
-        <Text>Gender:</Text>
-        <Text>{charter.gender}</Text>
-      </View>
-      <View style={{flexDirection: 'row'}}>
-        <Text>Location</Text>
-        <Text>{charter?.location?.name}</Text>
-      </View>
-      <View style={{flexDirection: 'row'}}>
-        <Text>Species</Text>
-        <Text>{charter.species}</Text>
-      </View>
-      <View style={{flexDirection: 'row'}}>
-        <Text>Status</Text>
-        <Text>{charter.status}</Text>
-      </View>
+      <ScrollView style={styles.detailArea}>
+        <View style={styles.nameArea}>
+          <Text style={styles.nameText}>{charter.name}</Text>
+        </View>
+        <View style={styles.nameArea}>
+          <Text style={styles.detail}>Gender :</Text>
+          <Text style={styles.genderText}>{charter.gender}</Text>
+        </View>
+        <View style={styles.nameArea}>
+          <Text style={styles.detail}>Species :</Text>
+          <Text style={styles.genderText}>{charter.species}</Text>
+        </View>
+        <View style={styles.nameArea}>
+          <Text style={styles.detail}>Status :</Text>
+          <Text style={styles.genderText}>{charter.status}</Text>
+        </View>
+        <View style={styles.locationArea}>
+          <Text style={styles.detail}>Location :</Text>
+          <View style={styles.locationDetail}>
+            <Text style={styles.genderText}>{charter?.location?.name}</Text>
+          </View>
+        </View>
+      </ScrollView>
     </View>
   );
 };
 
 export default Character;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {flex: 1},
+  imageStyle: {width: ww(1), height: wh(0.5)},
+  detailArea: {},
+  nameArea: {flexDirection: 'row', alignSelf: 'center'},
+  nameText: {fontSize: ww(0.1), color: 'black'},
+  genderArea: {flexDirection: 'row', marginTop: wh(0.04)},
+  genderText: {
+    fontSize: ww(0.08),
+    color: '#666666',
+    marginLeft: ww(0.04),
+  },
+  location: {flexDirection: 'row'},
+  detail: {fontSize: ww(0.06), marginTop: ww(0.04), marginLeft: -ww(0.08)},
+  locationDetail: {width: ww(0.5), height: wh(0.2)},
+  locationArea: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+    marginLeft: ww(0.3),
+  },
+});

@@ -5,6 +5,7 @@ import {apiUrl} from '../apis/apiurl';
 import {setFilmList} from '@redux/app/actions';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import axios from 'react-native-axios';
+import {ww, wh} from '../helpers/responsive';
 
 const ListScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -55,14 +56,14 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
     borderBottomWidth: 2,
-    marginLeft: 25,
-    marginRight: 25,
+    marginLeft: ww(0.08),
+    marginRight: ww(0.08),
     borderColor: '#6cac8c',
   },
   buttonText: {
-    marginTop: 50,
-    marginLeft: 20,
-    fontSize: 20,
+    marginTop: wh(0.07),
+    marginLeft: ww(0.06),
+    fontSize: ww(0.05),
     color: '#363636',
   },
 });
